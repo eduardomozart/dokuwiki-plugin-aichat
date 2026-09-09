@@ -7,20 +7,20 @@ class AIChatButton extends HTMLElement {
         super();
         this.#root = this.attachShadow({mode: 'open'});
         this.#root.innerHTML = `
-            <button class="toggle start">
+            <button class="toggle start" part="button">
             </button>
-            <dialog>
-                <div>
-                    <header>
-                        <button class="fs" title="fullscreen">
+            <dialog part="dialog">
+                <div part="container">
+                    <header part="header">
+                        <button class="fs" title="fullscreen" part="btn-fs">
                             <svg viewBox="0 0 24 24"><path d="M12 5.5L10 8H14L12 5.5M18 10V14L20.5 12L18 10M6 10L3.5 12L6 14V10M14 16H10L12 18.5L14 16M21 3H3C1.9 3 1 3.9 1 5V19C1 20.1 1.9 21 3 21H21C22.1 21 23 20.1 23 19V5C23 3.9 22.1 3 21 3M21 19H3V5H21V19Z" /></svg>
                         </button>
-                        <h1>AI Chat</h1>
-                        <button class="toggle" title="close">
+                        <h1 part="title">AI Chat</h1>
+                        <button class="toggle" title="close" part="btn-close">
                             <svg viewBox="0 0 24 24"><path d="M13.46,12L19,17.54V19H17.54L12,13.46L6.46,19H5V17.54L10.54,12L5,6.46V5H6.46L12,10.54L17.54,5H19V6.46L13.46,12Z" /></svg>
                         </button>
                     </header>
-                    <main>
+                    <main part="main">
                         <slot></slot>
                     </main>
                 </div>
@@ -58,7 +58,7 @@ class AIChatButton extends HTMLElement {
         }
 
         this.style.setProperty('--icon-url', `url("${iconUrl}")`);
-        this.#root.querySelector('button.start').innerHTML = `<div class="icon"></div>`;
+        this.#root.querySelector('button.start').innerHTML = `<div class="icon" part="icon"></div>`;
 
         this.#root.querySelector('button.start').title = this.getAttribute('label') || 'AI Chat';
         this.#dialog.querySelector('header h1').textContent = this.getAttribute('label') || 'AI Chat';
