@@ -16,11 +16,11 @@ class ChatModel extends AbstractGeminiModel implements ChatInterface
         foreach ($messages as $message) {
             if ($message['role'] === 'system') {
                 // system messages go to extra array
-                if (!isset($data['system_instructions'])) {
-                    $data['system_instructions'] = [];
-                    $data['system_instructions']['parts'] = [];
+                if (!isset($data['system_instruction'])) {
+                    $data['system_instruction'] = [];
+                    $data['system_instruction']['parts'] = [];
                 }
-                $data['system_instructions']['parts'][] = ['text' => $message['content']];
+                $data['system_instruction']['parts'][] = ['text' => $message['content']];
             } else {
                 $data['contents'][] = [
                     'role' => $message['role'] === 'assistant' ? 'model' : 'user',
