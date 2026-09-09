@@ -46,6 +46,12 @@ class AIChatButton extends HTMLElement {
      * We initialize the attribute based states here
      */
     connectedCallback() {
+        // Escape stacking context traps by moving floating buttons to the body
+        if (this.classList.contains('float') && this.parentElement !== document.body) {
+            document.body.appendChild(this);
+            return;
+        }
+
         const style = window.getComputedStyle(this);
         let iconUrl = style.getPropertyValue('--icon-url').trim();
         if (iconUrl.startsWith('url(')) {
